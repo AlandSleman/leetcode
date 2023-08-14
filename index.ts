@@ -1,9 +1,34 @@
-type S = "I" | "V" | "X" | "L" | "C" | "D" | "M";
-function romanToInt(s: S[]): number {
+function romanToInt(s: string): number {
   let result = 0;
-  if (s === "I") 
+  let arr = s.split("");
+  arr.forEach((i: string) => {
+    switch (i) {
+      case "I":
+        result += 1;
+        break;
+      case "V":
+        result += 5;
+        break;
+      case "X":
+        result += 10;
+        break;
+      case "L":
+        result += 50;
+        break;
+      case "C":
+        result += 100;
+        break;
+      case "D":
+        result += 500;
+        break;
+      case "M":
+        result += 1000;
+        break;
+    }
+  });
+  return result;
 }
-console.log(romanToInt("I"));
+console.log(romanToInt("MCMXCIV"));
 // I             1
 // V             5
 // X             10

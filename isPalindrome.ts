@@ -1,13 +1,11 @@
-type S = "I" | "V" | "X" | "L" | "C" | "D" | "M";
-function romanToInt(s: S): number {
-  let result = 0;
-  if (s === "I") 
+function isPalindrome(x: number): boolean {
+  let string = x.toString();
+  let arr = string.split("");
+  let string0 = "";
+  let string1 = "";
+  arr.forEach((s) => (string0 += s));
+  arr.reverse().forEach((s) => (string1 += s));
+  if (string0 === string1) return true;
+  else return false;
 }
-console.log(romanToInt("I"));
-// I             1
-// V             5
-// X             10
-// L             50
-// C             100
-// D             500
-// M             1000
+console.log(isPalindrome(121));
