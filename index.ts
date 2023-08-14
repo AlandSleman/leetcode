@@ -1,31 +1,40 @@
 function romanToInt(s: string): number {
-  const romanToIntMap: { [key: string]: number } = {
-    I: 1,
-    IV: 4,
-    V: 5,
-    IX: 9,
-    X: 10,
-    XL: 40,
-    L: 50,
-    XC: 90,
-    C: 100,
-    CD: 400,
-    D: 500,
-    CM: 900,
-    M: 1000,
-  };
-
   let result = 0;
-
-  for (let i = 0; i < s.length; i++) {
-    if (i + 1 < s.length && romanToIntMap[s.substring(i, i + 2)]) {
-      result += romanToIntMap[s.substring(i, i + 2)];
-      i++; // Move to the next character
-    } else {
-      result += romanToIntMap[s[i]];
+  let arr = s.split("");
+  arr.forEach((i, idx) => {
+    switch (i) {
+      case "I":
+        if (arr[idx + 1] === "V") result += 4
+        else
+        if (arr[idx + 1] === "X") result += 9;
+        else result += 1;
+        break;
+      case "V":
+        result += 5;
+        break;
+      case "X":
+        if (arr[idx + 1] === "L") result += 40
+        else
+        if (arr[idx + 1] === "C") result += 90;
+        else result += 10;
+        break;
+      case "L":
+        result += 50;
+        break;
+      case "C":
+        if (arr[idx + 1] === "D") result += 400
+        else
+        if (arr[idx + 1] === "M") result += 900;
+        else result += 100;
+        break;
+      case "D":
+        result += 500;
+        break;
+      case "M":
+        result += 1000;
+        break;
     }
-  }
-
+  });
   return result;
 }
 console.log(romanToInt("MCMXCIV")); // should be 1994
