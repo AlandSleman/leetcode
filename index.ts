@@ -1,34 +1,34 @@
 function romanToInt(s: string): number {
+  const romanToIntMap: { [key: string]: number } = {
+    I: 1,
+    IV: 4,
+    V: 5,
+    IX: 9,
+    X: 10,
+    XL: 40,
+    L: 50,
+    XC: 90,
+    C: 100,
+    CD: 400,
+    D: 500,
+    CM: 900,
+    M: 1000,
+  };
+
   let result = 0;
-  let arr = s.split("");
-  arr.forEach((i: string) => {
-    switch (i) {
-      case "I":
-        result += 1;
-        break;
-      case "V":
-        result += 5;
-        break;
-      case "X":
-        result += 10;
-        break;
-      case "L":
-        result += 50;
-        break;
-      case "C":
-        result += 100;
-        break;
-      case "D":
-        result += 500;
-        break;
-      case "M":
-        result += 1000;
-        break;
+
+  for (let i = 0; i < s.length; i++) {
+    if (i + 1 < s.length && romanToIntMap[s.substring(i, i + 2)]) {
+      result += romanToIntMap[s.substring(i, i + 2)];
+      i++; // Move to the next character
+    } else {
+      result += romanToIntMap[s[i]];
     }
-  });
+  }
+
   return result;
 }
-console.log(romanToInt("MCMXCIV"));
+console.log(romanToInt("MCMXCIV")); // should be 1994
 // I             1
 // V             5
 // X             10
